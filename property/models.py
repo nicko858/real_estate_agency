@@ -48,10 +48,5 @@ class Flat(models.Model):
         db_index=True)
     new_building = models.BooleanField(null=True, blank=True, default=None)
 
-    def get_build_year(self):
-        return self.created_at.year
-
-    get_build_year.short_description = 'Год постройки здания'
-
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
