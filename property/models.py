@@ -10,7 +10,7 @@ class Flat(models.Model):
     owners = models.ManyToManyField(
         'property.Owner',
         verbose_name='Собственники',
-        related_name='flat_owners',
+        related_name='owners',
         )
     created_at = models.DateTimeField(
         'Когда создано объявление',
@@ -81,13 +81,13 @@ class Complaint(models.Model):
         User,
         verbose_name='Кто пожаловался:',
         on_delete=models.CASCADE,
-        related_name='author_complaints',
+        related_name='authors',
         )
     flat = models.ForeignKey(
         Flat,
         verbose_name='Квартира, на которую пожаловались:',
         on_delete=models.CASCADE,
-        related_name='flat_complaints',
+        related_name='flats',
         )
     text = models.TextField(verbose_name='Текст жалобы:')
 
