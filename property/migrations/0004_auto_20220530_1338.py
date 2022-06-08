@@ -6,7 +6,7 @@ from django.db import migrations
 def fill_new_buiding_field(apps, schema_editor):
     new_buiding_sign = 2015
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.iterator():
         flat.new_building = flat.construction_year >= new_buiding_sign
         flat.save()
 
