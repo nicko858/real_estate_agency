@@ -7,10 +7,7 @@ def fill_new_buiding_field(apps, schema_editor):
     new_buiding_sign = 2015
     Flat = apps.get_model('property', 'Flat')
     for flat in Flat.objects.all():
-        if flat.construction_year >= new_buiding_sign:
-            flat.new_building = True
-        else:
-            flat.new_building = False
+        flat.new_building = flat.construction_year >= new_buiding_sign
         flat.save()
 
 
