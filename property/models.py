@@ -58,7 +58,12 @@ class Flat(models.Model):
         blank=True,
         db_index=True,
         )
-    new_building = models.BooleanField(null=True, blank=True, default=None)
+    new_building = models.BooleanField(
+        null=True,
+        blank=True,
+        default=None,
+        db_index=True,
+        )
     liked_by = models.ManyToManyField(
         User,
         verbose_name='Кто лайкнул:',
