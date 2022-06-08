@@ -10,6 +10,7 @@ class Flat(models.Model):
     owners = models.ManyToManyField(
         'property.Owner',
         verbose_name='Собственники',
+        related_name='flat_owners',
         )
     created_at = models.DateTimeField(
         'Когда создано объявление',
@@ -99,10 +100,6 @@ class Owner(models.Model):
         blank=True,
         default=None,
         verbose_name='Нормализованный номер владельца:',
-        )
-    flats = models.ManyToManyField(
-        Flat,
-        verbose_name='Квартиры в собственности:',
         )
 
     def __str__(self):
