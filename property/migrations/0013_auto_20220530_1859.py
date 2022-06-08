@@ -6,10 +6,14 @@ from django.db import migrations
 def import_owners_to_flats(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     Owner = apps.get_model('property', 'Owner')
-    for flat in Flat.objects.all():
-        flat_owners = Owner.objects.filter(flats=flat)
-        for owner in flat_owners:
-            flat.owners.add(owner)
+    for flat in Flat.objects.iterator():
+        owner_obj, _ = Owner.objects.get_or_create(
+            name=flat.owner_deprecated,
+            phonenumber=flat.owners_phonenumber,
+            owner_pure_phone=flat.owner_pure_phone,
+            )
+        owner_obj.save()
+        flat.owners.add(owner_obj)
         flat.save()
 
 
